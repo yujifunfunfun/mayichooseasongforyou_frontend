@@ -1,0 +1,197 @@
+.post {
+  background-color: #0E0E0F;
+  max-width: 100%;
+  border: 1px solid #1a1a1a;
+  margin-bottom: 10px;
+  color: white;
+}
+.post_header {
+  display: flex;
+  align-items: center;
+  padding: 7px 10px;
+}
+.post_header_link{
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+.post_avatar {
+  margin-right: 10px;
+  z-index: 0;
+  width: 32px!important;
+  height: 32px!important;
+}
+.post_nickName{
+  font-size: 14px;
+}
+.connection_button_container{
+  position: relative;
+  left: 5px;
+}
+.post_image {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+}
+.post_text {
+  font-weight: 600;
+  padding: 6px 10px;
+  word-break: break-all;
+  font-size: 14px;
+}
+
+.post_checkBox {
+  z-index: 0;
+  padding-left: 0px !important;
+}
+.favorite_border{
+  color: white!important;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  height: 36px;
+}
+.post_avatarGroup {
+  z-index: 0 !important;
+  width: 32px!important;
+  height: 32px!important;
+  border: none!important;
+}
+.audio_feature_divider{
+  background-color: #262626!important;
+  margin: 10px 0 10px 0!important;
+}
+.audio_feature_content{
+  display: flex;
+  font-size: 12px;
+}
+.audio_feature_name{
+  width: 70%;
+}
+.audio_feature{
+  width: 30%;
+}
+.post_comments {
+  padding: 6px 10px;
+}
+.post_comment {
+  display: flex;
+  align-items: center;
+  word-break: break-all;
+  font-size: 14px;
+  padding-bottom: 5px;
+  font-weight: 600;
+}
+.post_commentBox {
+  display: flex;
+  border-top: 1px solid #1a1a1a;
+
+}
+.post_input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  background-color: #0E0E0F;
+}
+.post_button {
+  flex: 0;
+  border: none;
+  color: #c0e2ff;
+  background-color: transparent;
+  cursor: pointer;
+  font-weight: bold;
+}
+.post_strong {
+  margin-right: 5px;
+}
+
+
+/* ーー続きを読む機能ーー */
+.readmore{
+  position: relative;
+  box-sizing: border-box;
+}
+
+.readmore_content{
+  position: relative;
+  overflow: hidden;
+  /*以下お好み*/
+  /*高さの初期値*/
+  height: 100px;
+}
+.readmore_content::before {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  content: "";
+  /*以下お好み グラデーションの色と高さ 高さはreadmoreのheight以下にすること*/
+  height: 40px;
+  background: linear-gradient(to bottom, rgba(127, 127, 127, 0) 0%, rgba(40, 40, 40, 0.8) 50%, rgba(40, 40, 40, 0.8) 50%, #353535 100%);
+}
+/* 続きを読むボタン */
+.readmore_label{
+  display: table;
+  position: absolute;
+  bottom: 5px;
+  right: -50px;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  margin: 0 auto;
+  padding: 0 10px;
+  border-radius: 10px;
+  color: rgb(173, 173, 173);
+}
+.readmore_label:before{
+  content: '... 続きを読む';
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.readmore_check{
+  display: none;
+}
+/*チェック時にボタンを非表示*/
+.readmore_check:checked ~ .readmore_label{
+  /* position: absolute;
+  transform: translateX(0);
+  -webkit-transform: translateX(0);
+  left: 358px;
+  bottom: 32px; */
+  /* 「続きを読む」を押した後、元に戻す必要がない場合は、上のオプションを消してこの1行だけにする */
+  display: none;
+}
+.readmore_check:checked ~ .readmore_label:before{
+  content: '閉じる';
+}
+/*チェック時に高さを自動に戻す*/
+.readmore_check:checked ~ .readmore_content{
+  height: auto;
+}
+/*チェック時グラデーション等を削除*/
+.readmore_check:checked ~ .readmore_content::before {
+  display: none;
+}
+
+.post_divider{
+  background-color: #1a1a1a!important;
+}
+
+.post_playlist_link{
+  text-decoration: none;
+  color: #badffe;
+}
+
+.post_playlist_link:visited {
+  color: #badffe;
+}
+
+.post_playlist_link:hover {
+  color: #78c2ff;
+}
+

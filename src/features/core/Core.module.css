@@ -1,0 +1,184 @@
+.container{
+  margin-top: 83px;
+}
+
+.app_title {
+  font-family: "Playball", cursive;
+  text-align: center;
+  font-size: 24px;
+  color: white;
+}
+
+.core_title {
+    font-family: "Playball", cursive;
+    text-align: center;
+    font-size: 24px;
+    color: black;
+  }
+  .newpost_form {
+    display: flex;
+    flex-direction: column;
+    height: 450px;
+    justify-content: center;
+  }
+  .core_text {
+    color: rgb(6, 153, 211);
+    text-align: center;
+    cursor: pointer;
+  }
+  .core_header {
+    position: fixed;
+    box-sizing: border-box;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: #cf2516;
+    padding: 20px;
+    object-fit: contain;
+    display: flex;
+    z-index: 1;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .core_btnModal {
+    background-color: transparent;
+    color: gray;
+    font-size: 32px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+
+.core_postBtnContainer{
+  display: flex;
+  padding: 6px 12px;
+}
+
+.core_postBtnModal {
+  height: 30px;
+  display: flex;
+  color: rgb(43, 43, 43);
+  border-radius: 5px;
+  align-items: center;
+  display: flex;
+  position: relative;
+  white-space: nowrap;
+  border: none;
+  font-weight: 600;
+  margin: 0 20px;
+  cursor: pointer;
+}
+
+.plus_square{
+  font-weight: bold;
+  font-size: 16px;
+}
+
+  .core_logout {
+    display: flex;
+  }
+  .logout_button{
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-weight: 600;
+    font-size: 13px;
+  }
+  .core_posts {
+    padding: 50px 20px;
+  }
+  .core_progress {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+  }
+
+.navigation_tab_container{
+  position: absolute;
+  display: flex;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.8;
+  align-items: center;
+  right:  200px;
+}
+
+.navigation_item {
+  align-items: center;
+  display: flex;
+  padding: 8px 16px;
+  position: relative;
+  white-space: nowrap;
+  text-decoration: none;
+  color: white;
+}
+
+.navigation_item:visited {
+  color: white;
+}
+
+.navigation_item:hover {
+  opacity: .8;
+}
+
+.search_playlist_container{
+  padding-bottom: 40px;
+}
+
+.search_playlist_form{
+  display: flex;
+}
+
+.search_playlist{
+  display: flex;
+  width: 540px;
+  height: 40px;
+  border: 1px solid #292928;
+  border-radius: 40px 0px 0px 40px;
+  padding-left: 16px;
+  align-items: center;
+}
+
+.search_playlist_input{
+  width: 500px;
+  height: 26px;
+  background-color: #0E0E0F;
+  border: none;
+  font-size: 16px;
+  color: white;
+}
+
+.search_playlist_input:focus{
+  outline: none;
+}
+
+.reset_search_button{
+  color: #8a8a8a;
+  background-color: #0E0E0F;
+  border: none;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.search_playlist_button_container{
+  display: flex;
+  height: 40px;
+  width: 64px;
+  border: 1px solid #292928;
+  border-radius: 0px 40px 40px 0px;
+  align-items: center;
+  background-color: #292928;
+  cursor: pointer;
+}
+
+.search_playlist_button{
+  background-color: #292928;
+  border: none;
+  font-size: 24px;
+  margin: 0 auto;
+  color: white;
+  display: flex;
+  cursor: pointer;
+}

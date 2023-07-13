@@ -1,0 +1,91 @@
+
+.connection{
+  padding: 50px 400px 0 400px;
+  font-weight: 600;
+  color: white;
+
+}
+
+
+.connection_menu{
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding: 0 180px;
+}
+
+
+
+/* フォロワー表示 */
+.follower_link_followers{
+  text-decoration: none;
+}
+.follower_link_followers:visited{
+  color: white;
+}
+.connection_link_border{
+  width: 80%;
+  margin: 0 auto;
+  border: 2px solid #FF4B3A;
+  position: relative;
+  top: 7px;
+  border-radius: 30px;
+}
+.following_link_followers{
+  color: gray;
+  font-weight: 400;
+  text-decoration: none;
+}
+.following_link_followers:visited{
+  color: gray;
+}
+
+/* フォロー中表示 */
+.follower_link_following{
+  color: gray;
+  font-weight: 400;
+  text-decoration: none;
+}
+.follower_link_following:visited{
+  color: gray;
+}
+.following_link_following{
+  text-decoration: none;
+}
+.following_link_following{
+  color: white;
+}
+
+.followers_container{
+  /* border: 1px solid #1a1a1a; */
+  border: 1px solid #b1b1b1;
+
+}
+
+
+.follower_container{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+}
+
+.follower_content{
+  display: flex;
+}
+.user_page_link{
+  display: flex;
+  text-decoration: none;
+}
+.user_page_link:visited{
+  color: white;
+}
+
+.nickName{
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+}
+

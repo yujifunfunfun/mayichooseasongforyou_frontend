@@ -1,0 +1,290 @@
+.myplaylist_container{
+  color: white;
+  padding: 100px 100px 50px 100px;
+  font-weight: 600;
+}
+
+.button_container{
+  display: flex;
+  width: 700px;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+
+.post_playlist_button{
+  width: 160px;
+  height: 32px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: #FC4A39;
+  color: white;
+  margin-right: 20px;
+}
+
+.edit_profile_form{
+  display: flex;
+  flex-direction: column;
+  height: 350px;
+  justify-content: center;
+}
+
+.edit_profile_title{
+  font-family: "Playball", cursive;
+  text-align: center;
+  font-size: 24px;
+  color: black;
+}
+
+
+.analise_playlist_button{
+  width: 160px;
+  height: 32px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: #FC4A39;
+  color: white;
+  margin-left: 20px;
+}
+
+.myplaylist_contents{
+  color: white;
+  margin: 0 auto;
+  width: 700px;
+}
+
+.myplaylist_title{
+  width: 650px;
+  margin: 0 auto;
+}
+
+.myplaylist_link{
+  font-size: 16px;
+  text-decoration: none;
+  color: #badffe;
+}
+
+
+
+.brwsr2 {
+  width: 650px;
+  border: none;
+  border-top: solid 1px #8b8b8b;
+  border-bottom: solid 1px #8b8b8b;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+  background: none;
+  margin: 0 auto;
+  }
+  
+  table.brwsr2 th {
+  vertical-align: middle;
+  height: 30px;
+  width: 100px;
+  border-right: solid 1px #8b8b8b;
+  margin: 0;
+  text-align: left;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  font-size: 12px;
+  
+  }
+  
+  table.brwsr2 td.data {
+  padding: 0;
+  margin: 0;
+  height: 30px;
+  width: 100px;
+  border: none;
+  color: white;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  overflow: hidden;
+  }
+  
+  table.brwsr2 td:fst-child {
+  padding: 0 0 0 10px;
+  vertical-align: middle;
+  }
+  
+  table.brwsr2 td.bar {
+  height: 1px;
+  width: 100%;
+  border-top: solid 1px #8b8b8b;
+  }
+
+  .analise_form{
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+    justify-content: center;
+  }
+
+  .analise_title{
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  .newPlaylist_form{
+    display: flex;
+    flex-direction: column;
+    height: 250px;
+    justify-content: center;
+  }
+
+  .newPlaylist_form_title{
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+
+
+/* ーー続きを読む機能ーー */
+.readmore{
+  position: relative;
+  box-sizing: border-box;
+}
+
+.readmore_content{
+  position: relative;
+  overflow: hidden;
+  line-height: 40px;
+  /*以下お好み*/
+  /*高さの初期値*/
+  height: 40px;
+}
+.readmore_content::before {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  content: "";
+}
+/* 続きを読むボタン */
+.readmore_label{
+  display: table;
+  position: absolute;
+  top: 10px;
+  right: -30px;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  margin: 0 auto;
+  padding: 0 10px;
+  border-radius: 10px;
+  color: rgb(173, 173, 173);
+}
+.readmore_label:before{
+  content: '分析結果を表示';
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.readmore_check{
+  display: none;
+}
+/*チェック時にボタンを非表示*/
+.readmore_check:checked ~ .readmore_label{
+  position: absolute;
+  transform: translateX(0);
+  -webkit-transform: translateX(0);
+  right: 20px;
+  top: 10px;
+  /* 「続きを読む」を押した後、元に戻す必要がない場合は、上のオプションを消してこの1行だけにする */
+  /* display: none; */
+}
+.readmore_check:checked ~ .readmore_label:before{
+  content: '閉じる';
+}
+/*チェック時に高さを自動に戻す*/
+.readmore_check:checked ~ .readmore_content{
+  height: auto;
+}
+/*チェック時グラデーション等を削除*/
+.readmore_check:checked ~ .readmore_content::before {
+  display: none;
+}
+
+.plsylist_divider{
+  background-color: #262626!important;
+}
+
+.delete_playlist_button{
+  font-size: 12px;
+  border: none;
+  cursor: pointer;
+  background: none;
+  color: red;
+  padding: 0;
+  position: absolute;
+  right: 0px;
+  top: 12px;
+}
+
+.delete_playlist_form{
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.delete_playlist_title{
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.delete_button_container{
+  display: flex;
+}
+
+.delete_confirm_button{
+  width: 105px;
+  height: 37px;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: rgb(209, 0, 0);
+  border: none;
+  border-radius: 4px;
+  color: white;
+  letter-spacing: 0.02857em;
+  cursor: pointer;
+  padding: 6px 16px;
+  box-shadow: 0 5px 10px -5px rgba(0,0,0,0.5);
+  margin-right: 5px;
+}
+
+.delete_confirm_button:hover{
+  background-color: rgb(186, 0, 0);
+}
+
+.cancel_delete_button{
+  width: 105px;
+  height: 37px;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: #d8d8d8;
+  border: none;
+  border-radius: 4px;
+  color: black;
+  letter-spacing: 0.02857em;
+  cursor: pointer;
+  padding: 6px 16px;
+  box-shadow: 0 5px 10px -5px rgba(0,0,0,0.5);
+  margin-left: 5px;
+}
+
+.cancel_delete_button:hover{
+  background-color: #c7c7c7;
+}

@@ -1,0 +1,170 @@
+.mypage_container{
+  padding: 30px 100px 100px 100px;
+}
+
+.myplofile_container{
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 0 auto;
+
+}
+
+.myplofile_image_container{
+  width: 300px;
+  display: flex;
+  justify-content: center;
+}
+
+.myplofile_image{
+  height: 170px!important;
+  width: 170px!important;
+}
+
+.myplofile_content{
+  width: 400px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;}
+.nickName{
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}
+.connection_link{
+  text-decoration: none;
+  color: white;
+}
+.connection_link:visited{
+  color: white;
+}
+
+.connection_button_container{
+  position: relative;
+  left: 10px;
+}
+
+.fav_music_genre{
+  font-size: 15px;
+}
+
+.mpl_epb{
+  display: flex;
+}
+
+.myplaylist_link{
+  width: 160px;
+  height: 32px;
+  background: #FC4B3A;
+  color: white;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 14px;
+  text-align: center;
+  line-height: 32px;
+  margin-right: 10px;
+}
+
+.myplaylist_link:visited {
+  color: white;
+}
+
+.edit_plofile_button{
+  width: 160px;
+  height: 32px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.edit_profile_form{
+  display: flex;
+  flex-direction: column;
+  height: 350px;
+  justify-content: center;
+}
+
+.edit_profile_title{
+  font-family: "Playball", cursive;
+  text-align: center;
+  font-size: 24px;
+  color: black;
+}
+
+.mypage_divider{
+  background-color: #262626!important;
+  margin: 40px 0 60px 0!important;
+}
+
+.delete_post_button{
+  font-size: 12px;
+  border: none;
+  cursor: pointer;
+  background: none;
+  color: red;
+  padding: 0;
+}
+
+.delete_post_form{
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.delete_post_title{
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.button_container{
+  display: flex;
+}
+
+.delete_confirm_button{
+  width: 105px;
+  height: 37px;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: rgb(209, 0, 0);
+  border: none;
+  border-radius: 4px;
+  color: white;
+  letter-spacing: 0.02857em;
+  cursor: pointer;
+  padding: 6px 16px;
+  box-shadow: 0 5px 10px -5px rgba(0,0,0,0.5);
+  margin-right: 5px;
+}
+
+.delete_confirm_button:hover{
+  background-color: rgb(186, 0, 0);
+}
+
+.cancel_delete_button{
+  width: 105px;
+  height: 37px;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: #d8d8d8;
+  border: none;
+  border-radius: 4px;
+  color: black;
+  letter-spacing: 0.02857em;
+  cursor: pointer;
+  padding: 6px 16px;
+  box-shadow: 0 5px 10px -5px rgba(0,0,0,0.5);
+  margin-left: 5px;
+}
+
+.cancel_delete_button:hover{
+  background-color: #c7c7c7;
+}

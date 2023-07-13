@@ -1,0 +1,110 @@
+.analyse_audio_container{
+  color: white;
+  padding: 100px 50px 50px 50px;
+}
+
+.analyse_audio_form{
+  width: 650px;
+  margin: 0 auto 50px auto;
+}
+
+.analyse_audio{
+  display: flex;
+  width: 500px;
+  height: 40px;
+  border: 1px solid #292928;
+  border-radius: 5px;
+  padding-left: 16px;
+  align-items: center;
+}
+
+.analyse_audio_input{
+  width: 500px;
+  height: 26px;
+  background-color: #0E0E0F;
+  border: none;
+  font-size: 16px;
+  color: white;
+}
+
+.analyse_audio_input:focus{
+  outline: none;
+}
+
+.analyse_button{
+  font-weight: 600;
+  color: white;
+  background-color: #FC4A39;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+.analyse_button:disabled{
+  background-color: #fc4939be;
+  opacity: .4;
+}
+
+.analyse_result{
+  color: white;
+}
+
+
+
+
+.brwsr2 {
+  width: 650px;
+  border: none;
+  border-top: solid 1px #8b8b8b;
+  border-bottom: solid 1px #8b8b8b;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+  background: none;
+  margin: 0 auto;
+  }
+  
+  table.brwsr2 th {
+  vertical-align: middle;
+  height: 30px;
+  width: 100px;
+  border-right: solid 1px #8b8b8b;
+  margin: 0;
+  text-align: left;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  font-size: 12px;
+  
+  }
+  
+  table.brwsr2 td.data {
+  padding: 0;
+  margin: 0;
+  height: 30px;
+  width: 100px;
+  border: none;
+  color: white;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  overflow: hidden;
+  }
+  
+  table.brwsr2 td:fst-child {
+  padding: 0 0 0 10px;
+  vertical-align: middle;
+  }
+  
+  table.brwsr2 td.bar {
+  height: 1px;
+  width: 100%;
+  border-top: solid 1px #8b8b8b;
+  }
+
+  .error_message{
+    width: 650px;
+    margin: 0 auto 50px auto;
+    font-weight: 600;
+  }
