@@ -38,7 +38,6 @@ type filterPost = {
 const Core: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const profile = useSelector(selectProfile);
-
   const posts = useSelector(selectPosts);
 
   const [keyword, setKeyword] = useState("");
@@ -53,7 +52,7 @@ const Core: React.FC = () => {
   const resetFilter = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     setKeyword("")
-    setFilteredPosts([])
+    setFilteredPosts(posts)
   }
 
   useEffect(() => {
@@ -65,13 +64,17 @@ const Core: React.FC = () => {
           dispatch(setOpenSignIn());
           return null;
         }
-        await dispatch(fetchAsyncGetPosts());
         await dispatch(fetchAsyncGetProfs());
         await dispatch(fetchAsyncGetFollowingList(profile.id));
         await dispatch(fetchAsyncGetComments());
         await dispatch(fetchAsyncGetPlaylist());
         await dispatch(fetchAsyncGetMyPlaylist());
         await dispatch(fetchAsyncGetAudioFeatures());
+
+        const postsResult = await dispatch(fetchAsyncGetPosts());
+        if (fetchAsyncGetPosts.fulfilled.match(postsResult)) {
+          setFilteredPosts(postsResult.payload);
+        }
       }
     };
     fetchBootLoader();
@@ -103,7 +106,7 @@ const Core: React.FC = () => {
               </form>
             </div>
             <Grid container spacing={2}>
-            {(filteredPosts[0] ? filteredPosts : posts)
+            {filteredPosts
                 .slice(0)
                 .reverse()
                 .map((post) => (
