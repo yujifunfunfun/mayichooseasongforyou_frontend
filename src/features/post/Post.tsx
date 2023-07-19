@@ -132,7 +132,7 @@ const Post: React.FC<PROPS_POST> = memo(({
                     <Avatar
                       className={styles.post_avatarGroup}
                       key={like}
-                      src={profiles.find((prof) => prof.userProfile === like)?.img}
+                      src={`https://res.cloudinary.com/hibhbyrja/${profiles.find((prof) => prof.userProfile === like)?.img}`}
                     />
                   ))}
                 </AvatarGroup>
