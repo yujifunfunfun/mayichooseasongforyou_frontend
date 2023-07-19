@@ -60,7 +60,7 @@ export const MyPage: React.FC = memo(() => {
       <div className={styles.mypage_container}>
         <div className={styles.myplofile_container}>
           <div className={styles.myplofile_image_container}>
-            <Avatar className={styles.myplofile_image} src={profile[0]?.img} />
+            <Avatar className={styles.myplofile_image} src={`https://res.cloudinary.com/hibhbyrja/${profile[0]?.img}`} />
           </div>
           <div className={styles.myplofile_content}>
             <div className={styles.nickName}>
