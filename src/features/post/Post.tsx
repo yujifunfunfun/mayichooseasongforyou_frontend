@@ -113,8 +113,7 @@ const Post: React.FC<PROPS_POST> = memo(({
             )}
           </div>
         </div>
-        <img className={styles.post_image} src={imageUrl} alt="" />
-
+        <img className={styles.post_image} src={`https://res.cloudinary.com/jwanderson/${imageUrl}`} alt="" />
 
         <div className={styles.readmore}>
           <input id={postId.toString()} className={styles.readmore_check} type="checkbox" />
