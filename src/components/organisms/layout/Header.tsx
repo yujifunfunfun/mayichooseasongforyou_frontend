@@ -141,7 +141,8 @@ const Header: React.FC = () => {
                   }}
                   variant="dot"
                 >
-                  <Avatar alt="who?" src={profile.img} />
+                  <Avatar alt="who?" src={`https://res.cloudinary.com/hibhbyrja/${profile.img}`} />
+
                 </StyledBadge>
               </button>
               </NavLink>

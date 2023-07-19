@@ -100,7 +100,7 @@ const Post: React.FC<PROPS_POST> = memo(({
       <div className={styles.post}>
         <div className={styles.post_header}>
           <NavLink to={`/user/${userPost}`} className={styles.post_header_link}>
-          <Avatar className={styles.post_avatar} src={prof[0]?.img} />
+          <Avatar className={styles.post_avatar} src={`https://res.cloudinary.com/hibhbyrja/${prof[0]?.img}`} />
           <h3 className={styles.post_nickName}>{prof[0]?.nickName}</h3>
           </NavLink>
           <div className={styles.connection_button_container}>
