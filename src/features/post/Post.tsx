@@ -208,11 +208,7 @@ const Post: React.FC<PROPS_POST> = memo(({
                     {commentsOnPost.map((comment) => (
                       <div key={comment.id} className={styles.post_comment}>
                         <Avatar
-                          src={
-                            profiles.find(
-                              (prof) => prof.userProfile === comment.userComment
-                            )?.img
-                          }
+                          src={`https://res.cloudinary.com/hibhbyrja/${profiles.find((prof) => prof.userProfile === comment.userComment)?.img}`}
                           className={classes.small}
                         />
                         <p>
