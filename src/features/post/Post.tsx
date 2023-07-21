@@ -95,6 +95,8 @@ const Post: React.FC<PROPS_POST> = memo(({
   };
 
     return (
+      <>
+      {prof? (
       <div className={styles.post}>
         <div className={styles.post_header}>
           <NavLink to={`/user/${userPost}`} className={styles.post_header_link}>
@@ -245,7 +247,13 @@ const Post: React.FC<PROPS_POST> = memo(({
           <label className={styles.readmore_label} htmlFor={postId.toString()}></label>
         </div>
       </div>
-    );
+    ) : (
+      <div className={styles.circular_progress_post}>
+        <CircularProgress />
+      </div>
+    )}
+  </>
+  );
 
 });
 

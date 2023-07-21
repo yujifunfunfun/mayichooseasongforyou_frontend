@@ -81,6 +81,11 @@ const Core: React.FC = () => {
     fetchBootLoader();
   }, [dispatch]);
 
+  useEffect(() => {
+    const filteredPostsList = posts.filter((post) => post.genre.includes(keyword) || post.description.includes(keyword));
+    setFilteredPosts(filteredPostsList)
+  }, [posts]);
+
   return (
     <div>
       {profile?.nickName && (
