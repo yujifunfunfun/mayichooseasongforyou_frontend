@@ -47,7 +47,6 @@ const Post: React.FC<PROPS_POST> = memo(({
   const playlists = useSelector(selectPlaylists);
   const audioFeatures = useSelector(selectAudioFeatures);
   const MyFollowingList = useSelector(selectMyFollowingList);
-  const followerList = useSelector(selectFollowerList);
   const isLoadingConnection = useSelector(selectIsLoadingConnection);
 
   const [text, setText] = useState("");
@@ -67,7 +66,6 @@ const Post: React.FC<PROPS_POST> = memo(({
         if (fetchAsyncGetFollowingList.rejected.match(result)) {
           return null;
         }
-        await dispatch(fetchAsyncGetFollowerList(prof[0]?.id));
       }
     };
     fetchBootLoader();
@@ -96,7 +94,6 @@ const Post: React.FC<PROPS_POST> = memo(({
     await dispatch(fetchPostEnd());
   };
 
-  if (followerList[0] !== 0) {
     return (
       <div className={styles.post}>
         <div className={styles.post_header}>
@@ -109,7 +106,7 @@ const Post: React.FC<PROPS_POST> = memo(({
           {isLoadingConnection ? <div className={styles.circular_progress}><CircularProgress size={20} /></div>:
             <>
             {myProfile.id !== prof[0]?.id && (
-              MyFollowingList.includes(prof[0].id) ? (
+              MyFollowingList.includes(prof[0]?.id) ? (
                 <UnFollowButton followerId={myProfile.id} followingId={prof[0]?.id} />
               ) : (
                 <FollowButton followerId={myProfile.id} followingId={prof[0]?.id} />
@@ -249,8 +246,7 @@ const Post: React.FC<PROPS_POST> = memo(({
         </div>
       </div>
     );
-  }
-  return null;
+
 });
 
 export default Post;
