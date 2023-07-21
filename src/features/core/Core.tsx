@@ -42,7 +42,7 @@ const Core: React.FC = () => {
   const posts = useSelector(selectPosts);
 
   const [keyword, setKeyword] = useState("");
-  const [filteredPosts, setFilteredPosts] = useState<filterPost[]>([]);
+  const [filteredPosts, setFilteredPosts] = useState<filterPost[]>(posts);
 
   const handleSubmit = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
@@ -108,7 +108,7 @@ const Core: React.FC = () => {
             </div>
             {posts ?
             <Grid container spacing={2}>
-            {(filteredPosts[0] ? filteredPosts : posts)
+            {filteredPosts
                 .slice(0)
                 .reverse()
                 .map((post) => (
