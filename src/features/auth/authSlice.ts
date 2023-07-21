@@ -167,9 +167,13 @@ export const authSlice = createSlice({
         prof.id === action.payload.id ? action.payload : prof
       );
     });
+    builder.addCase(fetchAsyncRegister.rejected, (state, action) => {
+      state.error = "そのメールアドレスは既に登録されています";
+      localStorage.removeItem("localJWT");
+    });
     builder.addCase(fetchAsyncLogin.rejected, (state, action) => {
       state.error = "ログインに失敗しました";
-      localStorage.removeItem("localJWT"); 
+      localStorage.removeItem("localJWT");
     });
   },
 });

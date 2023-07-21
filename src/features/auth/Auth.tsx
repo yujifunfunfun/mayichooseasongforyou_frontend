@@ -79,9 +79,9 @@ const Auth: React.FC = () => {
               await dispatch(fetchAsyncGetPosts());
               await dispatch(fetchAsyncGetComments());
               await dispatch(fetchAsyncGetMyProf());
+              await dispatch(resetOpenSignUp());
             }
             await dispatch(fetchCredEnd());
-            await dispatch(resetOpenSignUp());
           }}
           validationSchema={Yup.object().shape({
             nickName: Yup.string().required("必須項目です"),
@@ -158,8 +158,8 @@ const Auth: React.FC = () => {
                     <div className={styles.auth_error}>{errors.password}</div>
                   ) : null}
                   <br />
+                  {error && <div className={styles.auth_error}>{error}</div>}
                   <br />
-
                   <Button
                     variant="contained"
                     color="primary"
