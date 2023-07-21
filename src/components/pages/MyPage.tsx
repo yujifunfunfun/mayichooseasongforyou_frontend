@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from "react";
+import React, { memo, useEffect, useState } from "react";
 import styles from "./MyPage.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch } from "../../app/store";
@@ -7,7 +7,7 @@ import {
   selectProfiles,
   setOpenProfile,
 } from "../../features/auth/authSlice";
-import { Grid, Avatar, Divider } from "@material-ui/core";
+import { Grid, Avatar, Divider, CircularProgress } from "@material-ui/core";
 import { selectPosts, setOpenDeletePost } from "../../features/post/postSlice";
 import EditProfile from "../atoms/EditProfile";
 import Post from "../../features/post/Post";
@@ -16,7 +16,7 @@ import DeletePost from "../atoms/DeletePost";
 import { fetchAsyncGetAudioFeatures, fetchAsyncGetMyPlaylist, fetchAsyncGetPlaylist } from "../../features/playlist/playlistSlice";
 import { useParams } from 'react-router-dom';
 import FollowButton from "../molecules/FollowButton";
-import { fetchAsyncGetFollowerList, fetchAsyncGetFollowingList, selectFollowerList, selectFollowingList } from "../../features/connection/connectionSlice";
+import { fetchAsyncGetFollowerList, fetchAsyncGetFollowingList, selectFollowerList, selectFollowingList, selectIsLoadingConnection } from "../../features/connection/connectionSlice";
 import UnFollowButton from "../molecules/UnFollowButton";
 
 
@@ -27,6 +27,10 @@ export const MyPage: React.FC = memo(() => {
   const posts = useSelector(selectPosts);
   const followingList = useSelector(selectFollowingList);
   const followerList = useSelector(selectFollowerList);
+  const isLoadingConnection = useSelector(selectIsLoadingConnection);
+
+
+  const [postId, setPostId] = useState<number>(0)
 
   const params = useParams();
   const { userId } = params;
@@ -51,28 +55,40 @@ export const MyPage: React.FC = memo(() => {
     fetchBootLoader();
   }, [dispatch, profiles, userId]);
 
+  const openDeleteModal = async (postId: number, e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
+    setPostId(postId)
+    await dispatch(setOpenDeletePost());
+  };
+
   const myPosts = posts.filter((post) => post.userPost.toString() === userId)
 
   if (followerList[0] !== 0 && followingList[0] !== 0) {
   return (
     <>
       <EditProfile />
+      <DeletePost postId={postId} />
+
       <div className={styles.mypage_container}>
         <div className={styles.myplofile_container}>
           <div className={styles.myplofile_image_container}>
             <Avatar className={styles.myplofile_image} src={`https://res.cloudinary.com/hibhbyrja/${profile[0]?.img}`} />
+
           </div>
           <div className={styles.myplofile_content}>
             <div className={styles.nickName}>
               <div>{profile[0]?.nickName}</div>
               <div className={styles.connection_button_container}>
-              {myProfile.id !== profile[0]?.id && (
-              followerList.includes(myProfile.id) ? (
-                <UnFollowButton followerId={myProfile.id} followingId={profile[0]?.id} userProfileId={profile[0].id}/>
-              ) : (
-                <FollowButton followerId={myProfile.id} followingId={profile[0]?.id} userProfileId={profile[0].id}/>
-              )
-              )}
+                {isLoadingConnection ? <div className={styles.circular_progress_profile}><CircularProgress size={28} /></div>:
+                <>
+                {myProfile.id !== profile[0]?.id && (
+                followerList.includes(myProfile.id) ? (
+                  <UnFollowButton followerId={myProfile.id} followingId={profile[0]?.id} userProfileId={profile[0].id}/>
+                ) : (
+                  <FollowButton followerId={myProfile.id} followingId={profile[0]?.id} userProfileId={profile[0].id}/>
+                )
+                )}
+                </>}
               </div>
             </div>
             <br />
@@ -99,15 +115,15 @@ export const MyPage: React.FC = memo(() => {
         </div>
         <Divider className={styles.mypage_divider} />
         <div>
+          {myPosts ?
           <Grid container spacing={1}>
             {myPosts
               .slice(0)
               .reverse()
               .map((post) => (
                 <Grid key={post.id} item xs={12} md={4}>
-                  <DeletePost postId={post.id} />
                   {(post.userPost===myProfile.userProfile) &&
-                  <button className={styles.delete_post_button} onClick={() => {dispatch(setOpenDeletePost());}}>削除</button>
+                  <button className={styles.delete_post_button} onClick={(e) => openDeleteModal(post.id, e)}>削除</button>
                   }
                   <Post
                     postId={post.id}
@@ -121,7 +137,7 @@ export const MyPage: React.FC = memo(() => {
                   />
                 </Grid>
               ))}
-          </Grid>
+          </Grid>:<div className={styles.circular_progress}><CircularProgress /></div>}
         </div>
       </div>
 

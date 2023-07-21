@@ -77,14 +77,14 @@ const AnalisePlaylist: React.FC = memo(() => {
               options={options}
               placeholder="プレイリストを選ぶ"
               onChange={(value) => {
-                value ? setSelectedPlaylist(value) : null;
+              value ? setSelectedPlaylist(value) : null;
               }}
               noOptionsMessage={() => "プレイリストを追加してください"}
             />
           </div>
           <br />
 
-            {isLoadingPlaylist ? <CircularProgress />:
+          {isLoadingPlaylist ? <div className={styles.circular_progress}><CircularProgress /></div>:
               <div>
               <Button
                 variant="contained"

@@ -14,7 +14,6 @@ import {
 import {
   editNickname,
   selectProfile,
-  selectIsLoadingAuth,
   setOpenSignIn,
   resetOpenSignIn,
   setOpenSignUp,
@@ -25,7 +24,6 @@ import {
 } from "../../../features/auth/authSlice";
 
 import {
-  selectIsLoadingPost,
   setOpenNewPost,
   resetOpenNewPost,
   fetchAsyncGetPosts,
@@ -33,7 +31,7 @@ import {
 } from "../../../features/post/postSlice";
 
 import NewPost from "../../../features/core/NewPost";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { BsPlusSquare } from "react-icons/bs";
 
 
@@ -69,10 +67,10 @@ const StyledBadge = withStyles((theme) => ({
 }))(Badge);
 
 const Header: React.FC = () => {
+  const navigate = useNavigate();
   const dispatch: AppDispatch = useDispatch();
   const profile = useSelector(selectProfile);
-  const isLoadingPost = useSelector(selectIsLoadingPost);
-  const isLoadingAuth = useSelector(selectIsLoadingAuth);
+
 
   useEffect(() => {
     const fetchBootLoader = async () => {
@@ -116,13 +114,13 @@ const Header: React.FC = () => {
                   </button>
             </div>
             <div className={styles.core_logout}>
-              {(isLoadingPost || isLoadingAuth) && <CircularProgress />}
               <button
                 onClick={() => {
                   localStorage.removeItem("localJWT");
                   dispatch(editNickname(""));
                   dispatch(resetOpenProfile());
                   dispatch(resetOpenNewPost());
+                  navigate("/");
                   dispatch(setOpenSignIn());
                 }}
                 className={styles.logout_button}
@@ -142,7 +140,6 @@ const Header: React.FC = () => {
                   variant="dot"
                 >
                   <Avatar alt="who?" src={`https://res.cloudinary.com/hibhbyrja/${profile.img}`} />
-
                 </StyledBadge>
               </button>
               </NavLink>

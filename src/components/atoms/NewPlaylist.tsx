@@ -3,8 +3,8 @@ import Modal from "react-modal";
 import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch } from "../../app/store";
 import styles from "../pages/MyPlaylists.module.css";
-import { Button, TextField } from "@material-ui/core";
-import { fetchAsyncNewPlaylist, fetchPlaylistEnd, fetchPlaylistStart, resetOpenNewPlaylist, selectOpenNewPlaylist } from "../../features/playlist/playlistSlice";
+import { Button, CircularProgress, TextField } from "@material-ui/core";
+import { fetchAsyncNewPlaylist, fetchPlaylistEnd, fetchPlaylistStart, resetOpenNewPlaylist, selectIsLoadingPlaylist, selectOpenNewPlaylist } from "../../features/playlist/playlistSlice";
 
 const customStyles = {
   overlay: {
@@ -24,6 +24,8 @@ const customStyles = {
 const NewPlaylist: React.FC = memo(() => {
   const dispatch: AppDispatch = useDispatch();
   const openNewPlaylist = useSelector(selectOpenNewPlaylist);
+  const isLoadingPlaylist = useSelector(selectIsLoadingPlaylist);
+
 
   const [title, setTitle] = useState("");
   const [url, setUrl] = useState("");
@@ -64,6 +66,7 @@ const NewPlaylist: React.FC = memo(() => {
           />
           <br />
           <br />
+          {isLoadingPlaylist ? <div className={styles.circular_progress}><CircularProgress /></div>:
           <Button
             disabled={!title || !url.includes("https://open.spotify.com/playlist/")}
             variant="contained"
@@ -71,7 +74,7 @@ const NewPlaylist: React.FC = memo(() => {
             onClick={newPlaylist}
           >
             投稿
-          </Button>
+          </Button>}
         </form>
       </Modal>
     </>

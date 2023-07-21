@@ -198,4 +198,7 @@
 .post_playlist_link:hover {
   color: #78c2ff;
 }
+.circular_progress{
+  margin-left: 10px;
+}
 

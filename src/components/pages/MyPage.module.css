@@ -168,3 +168,14 @@
 .cancel_delete_button:hover{
   background-color: #c7c7c7;
 }
+
+.circular_progress{
+  width: 100%;
+  text-align: center;
+  margin-top: 100px;
+}
+.circular_progress_profile{
+  margin-left: 15px;
+  display: flex;
+  align-items: center;
+}

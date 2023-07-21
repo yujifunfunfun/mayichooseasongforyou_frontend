@@ -9,7 +9,7 @@ import {
   selectProfiles,
 } from "../../features/auth/authSlice"
 
-import { Avatar } from "@material-ui/core"
+import { Avatar, CircularProgress } from "@material-ui/core"
 import { NavLink, useLocation, useParams } from "react-router-dom"
 import FollowButton from "../molecules/FollowButton"
 import UnFollowButton from "../molecules/UnFollowButton"
@@ -20,6 +20,7 @@ import {
   fetchAsyncGetMyFollowingList,
   selectFollowerList,
   selectFollowingList,
+  selectIsLoadingConnection,
   selectMyFollowingList,
 } from "../../features/connection/connectionSlice"
 
@@ -31,6 +32,8 @@ export const Connection: React.FC = memo(() => {
   const followingList = useSelector(selectFollowingList);
   const followerList = useSelector(selectFollowerList);
   const MyFollowingList = useSelector(selectMyFollowingList);
+  const isLoadingConnection = useSelector(selectIsLoadingConnection);
+
 
   const location = useLocation();
   const path = location.pathname;
@@ -79,20 +82,23 @@ export const Connection: React.FC = memo(() => {
                 <div className={styles.follower_container}>
                   <NavLink to={`/user/${profile.userProfile}`} className={styles.user_page_link}>
                     <div className={styles.follower_image_container}>
-                      <Avatar className={styles.follower_image} src={profile?.img} />
+                      <Avatar className={styles.follower_image} src={`https://res.cloudinary.com/hibhbyrja/${profile?.img}`} />
                     </div>
                     <div className={styles.nickName}>
                       {profile?.nickName}
                     </div>
                   </NavLink>
                   <div className={styles.connection_button_container}>
-                    {myProfile.id !== profile?.id && (
-                    MyFollowingList.includes(profile?.id) ? (
-                      <UnFollowButton followerId={myProfile.id} followingId={profile?.id} userProfileId={userprofile[0].id} />
-                    ) : (
-                      <FollowButton followerId={myProfile.id} followingId={profile?.id} userProfileId={userprofile[0].id}/>
-                    )
-                    )}
+                  {isLoadingConnection ? <div className={styles.circular_progress}><CircularProgress size={30} /></div>:
+                    <>
+                      {myProfile.id !== profile?.id && (
+                      MyFollowingList.includes(profile?.id) ? (
+                        <UnFollowButton followerId={myProfile.id} followingId={profile?.id} userProfileId={userprofile[0].id} />
+                      ) : (
+                        <FollowButton followerId={myProfile.id} followingId={profile?.id} userProfileId={userprofile[0].id}/>
+                      )
+                      )}
+                    </>}
                   </div>
                 </div>
               ))}
@@ -116,20 +122,23 @@ export const Connection: React.FC = memo(() => {
                   <div className={styles.follower_container}>
                     <NavLink to={`/user/${profile.userProfile}`} className={styles.user_page_link}>
                       <div className={styles.follower_image_container}>
-                        <Avatar className={styles.follower_image} src={profile?.img} />
+                        <Avatar className={styles.follower_image} src={`https://res.cloudinary.com/hibhbyrja/${profile?.img}`} />
                       </div>
                       <div className={styles.nickName}>
                         {profile?.nickName}
                       </div>
                     </NavLink>
                     <div className={styles.connection_button_container}>
-                      {myProfile.id !== profile?.id && (
-                      MyFollowingList.includes(profile?.id) ? (
-                        <UnFollowButton followerId={myProfile.id} followingId={profile?.id} userProfileId={userprofile[0].id} />
-                      ) : (
-                        <FollowButton followerId={myProfile.id} followingId={profile?.id} userProfileId={userprofile[0].id} />
-                      )
-                      )}
+                    {isLoadingConnection ? <div className={styles.circular_progress}><CircularProgress size={30} /></div>:
+                      <>
+                        {myProfile.id !== profile?.id && (
+                        MyFollowingList.includes(profile?.id) ? (
+                          <UnFollowButton followerId={myProfile.id} followingId={profile?.id} userProfileId={userprofile[0].id} />
+                        ) : (
+                          <FollowButton followerId={myProfile.id} followingId={profile?.id} userProfileId={userprofile[0].id} />
+                        )
+                        )}
+                      </>}
                     </div>
                   </div>
                 ))}

@@ -53,10 +53,16 @@ export const connectionSlice = createSlice({
     followerList: [0],
     MyFollowingList: [0],
     MyFollowerList: [0],
+    isLoadingConnection: false,
     error: "ss",
   },
   reducers: {
-
+    fetchConnectionStart(state) {
+      state.isLoadingConnection = true;
+    },
+    fetchConnectionEnd(state) {
+      state.isLoadingConnection = false;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchAsyncGetFollowingList.fulfilled, (state, action) => {
@@ -74,6 +80,9 @@ export const connectionSlice = createSlice({
   },
 });
 
+export const { fetchConnectionStart, fetchConnectionEnd } = connectionSlice.actions;
+
+export const selectIsLoadingConnection = (state: RootState) => state.connection.isLoadingConnection;
 export const selectFollowingList= (state: RootState) => state.connection.followingList;
 export const selectFollowerList= (state: RootState) => state.connection.followerList;
 export const selectMyFollowingList= (state: RootState) => state.connection.MyFollowingList;

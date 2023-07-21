@@ -14,8 +14,9 @@ import {
   fetchCredEnd,
   fetchAsyncUpdateProf,
   editFavMusicGenre,
+  selectIsLoadingAuth,
 } from "../../features/auth/authSlice";
-import { Button, TextField } from "@material-ui/core";
+import { Button, CircularProgress, TextField } from "@material-ui/core";
 
 const customStyles = {
   overlay: {
@@ -49,6 +50,7 @@ const EditProfile: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const openProfile = useSelector(selectOpenProfile);
   const profile = useSelector(selectProfile);
+  const isLoadingAuth = useSelector(selectIsLoadingAuth);
   const [profileImage, setProfileImage] = useState<File | null>(null);
 
   const updateProfile = async (e: React.MouseEvent<HTMLElement>) => {
@@ -75,47 +77,50 @@ const EditProfile: React.FC = () => {
         <form className={styles.edit_profile_form}>
           <h1 className={styles.edit_profile_title}>プロフィールを編集</h1>
           <br />
-          <TextField
-            placeholder="nickname"
-            type="text"
-            value={profile?.nickName}
-            onChange={(e) => dispatch(editNickname(e.target.value))}
-          />
-          <br />
-          <TextField
-            placeholder="fav_music_genre"
-            type="text"
-            multiline
-            maxRows={5}
-            value={profile?.fav_music_genre}
-            onChange={(e) => dispatch(editFavMusicGenre(e.target.value))}
-          />
-          <br />
-          <ProfileFileInputWrapper>
-            <StyledProfileFileInput
-              type="file"
-              id="profileImageInput"
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setProfileImage(e.target.files![0])}
+          {isLoadingAuth ? <div className={styles.circular_progress}><CircularProgress /></div>:
+          <>
+            <TextField
+              placeholder="nickname"
+              type="text"
+              value={profile?.nickName}
+              onChange={(e) => dispatch(editNickname(e.target.value))}
             />
-            <label htmlFor="profileImageInput">
-              <Button variant="outlined" color="primary" component="span">
-                画像を選ぶ
-              </Button>
-              {profileImage && <ProfileFileName>{profileImage.name}</ProfileFileName>}
-            </label>
-          </ProfileFileInputWrapper>
-          <br />
+            <br />
+            <TextField
+              placeholder="fav_music_genre"
+              type="text"
+              multiline
+              maxRows={5}
+              value={profile?.fav_music_genre}
+              onChange={(e) => dispatch(editFavMusicGenre(e.target.value))}
+            />
+            <br />
+            <ProfileFileInputWrapper>
+              <StyledProfileFileInput
+                type="file"
+                id="profileImageInput"
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setProfileImage(e.target.files![0])}
+              />
+              <label htmlFor="profileImageInput">
+                <Button variant="outlined" color="primary" component="span">
+                  画像を選ぶ
+                </Button>
+                {profileImage && <ProfileFileName>{profileImage.name}</ProfileFileName>}
+              </label>
+            </ProfileFileInputWrapper>
+            <br />
 
-          <br />
-          <Button
-            disabled={!profile?.nickName}
-            variant="contained"
-            color="primary"
-            type="submit"
-            onClick={updateProfile}
-          >
-            更新する
-          </Button>
+            <br />
+            <Button
+              disabled={!profile?.nickName}
+              variant="contained"
+              color="primary"
+              type="submit"
+              onClick={updateProfile}
+            >
+              更新する
+            </Button>
+          </>}
         </form>
       </Modal>
     </>

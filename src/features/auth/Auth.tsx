@@ -86,11 +86,10 @@ const Auth: React.FC = () => {
           validationSchema={Yup.object().shape({
             nickName: Yup.string().required("必須項目です"),
             email: Yup.string()
-              .email("email format is wrong")
+              .email("正しい形式で入力してください")
               .required("必須項目です"),
-            password: Yup.string().required("必須項目です").min(4),
+            password: Yup.string().required("必須項目です").test('password-length', 'パスワードは4文字以上で入力してください', value => value.length >= 4),
             fav_music_genre: Yup.string().required("必須項目です"),
-
           })}
         >
           {({
@@ -105,12 +104,10 @@ const Auth: React.FC = () => {
             <div>
               <form onSubmit={handleSubmit}>
                 <div className={styles.auth_signUp}>
+                {isLoadingAuth ? <div className={styles.circular_progress}><CircularProgress /></div>:
+                  <>
                   <h1 className={styles.auth_title}>登録する</h1>
-                  <div className={styles.auth_progress}>
-                    {isLoadingAuth && <CircularProgress />}
-                  </div>
                   <br />
-
                   <TextField
                     placeholder="ニックネーム"
                     type="input"
@@ -123,7 +120,7 @@ const Auth: React.FC = () => {
                     <div className={styles.auth_error}>{errors.nickName}</div>
                   ) : null}
                   <br />
-                  
+
 
                   <TextField
                     placeholder="好きな音楽のジャンル"
@@ -182,6 +179,7 @@ const Auth: React.FC = () => {
                   >
                     既にアカウントを持っている
                   </span>
+                  </>}
                 </div>
               </form>
             </div>
@@ -216,9 +214,9 @@ const Auth: React.FC = () => {
           }}
           validationSchema={Yup.object().shape({
             email: Yup.string()
-              .email("email format is wrong")
+              .email("正しい形式で入力してください")
               .required("必須項目です"),
-            password: Yup.string().required("必須項目です").min(4),
+            password: Yup.string().required("必須項目です"),
           })}
         >
           {({
@@ -235,11 +233,7 @@ const Auth: React.FC = () => {
                 <div className={styles.auth_signUp}>
                   <h1 className={styles.auth_title}>ログイン</h1>
                   <br />
-                  <div className={styles.auth_progress}>
-                    {isLoadingAuth && <CircularProgress />}
-                  </div>
                   <br />
-
                   <TextField
                     placeholder="メールアドレス"
                     type="input"
@@ -267,26 +261,29 @@ const Auth: React.FC = () => {
                   <br />
                   {error && <div className={styles.auth_error}>{error}</div>  }
                   <br />
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    disabled={!isValid}
-                    type="submit"
-                  >
-                    ログイン
-                  </Button>
-                  <br />
-                  <br />
-                  <span
-                    className={styles.auth_text}
-                    onClick={async () => {
-                      await dispatch(resetOpenSignIn());
-                      await dispatch(setOpenSignUp());
-                      await dispatch(resetError());
-                    }}
-                  >
-                    アカウントを作成する
-                  </span>
+                  {isLoadingAuth ? <div className={styles.circular_progress}><CircularProgress /></div>:
+                  <>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      disabled={!isValid}
+                      type="submit"
+                    >
+                      ログイン
+                    </Button>
+                    <br />
+                    <br />
+                    <span
+                      className={styles.auth_text}
+                      onClick={async () => {
+                        await dispatch(resetOpenSignIn());
+                        await dispatch(setOpenSignUp());
+                        await dispatch(resetError());
+                      }}
+                    >
+                      アカウントを作成する
+                    </span>
+                  </>}
                 </div>
               </form>
             </div>

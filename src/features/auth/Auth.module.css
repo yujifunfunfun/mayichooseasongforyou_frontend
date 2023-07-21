@@ -23,8 +23,8 @@
   text-align: center;
   cursor: pointer;
 }
-.auth_progress {
-  margin-top: 15px;
-  display: flex;
-  justify-content: center;
+
+.circular_progress{
+  width: 100%;
+  text-align: center;
 }

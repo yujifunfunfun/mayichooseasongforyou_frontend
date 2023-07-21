@@ -14,8 +14,9 @@ import {
   fetchPostStart,
   fetchPostEnd,
   fetchAsyncNewPost,
+  selectIsLoadingPost,
 } from "../post/postSlice";
-import { Button, TextField } from "@material-ui/core";
+import { Button, CircularProgress, TextField } from "@material-ui/core";
 import { selectMyPlaylists } from "../playlist/playlistSlice";
 
 const customStyles = {
@@ -50,6 +51,8 @@ const NewPost: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const openNewPost = useSelector(selectOpenNewPost);
   const myPlaylists = useSelector(selectMyPlaylists);
+  const isLoadingPost = useSelector(selectIsLoadingPost);
+
 
   const options = myPlaylists.map((myPlaylist) => {
     return { value: myPlaylist.url, label: myPlaylist.title };
@@ -84,56 +87,59 @@ const NewPost: React.FC = () => {
         style={customStyles}
       >
         <form className={styles.newpost_form}>
-          <h1 className={styles.core_title}>プレイリスト投稿</h1>
-          <br />
+        {isLoadingPost ? <div className={styles.circular_progress_new_post}><CircularProgress /></div>:
+          <>
+            <h1 className={styles.core_title}>プレイリスト投稿</h1>
+            <br />
 
-          <TextField
-            placeholder="ジャンル"
-            type="text"
-            onChange={(e) => setGenre(e.target.value)}
-          />
-          <br />
-          <TextField
-            placeholder="説明文"
-            type="text"
-            multiline
-            maxRows={10}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-          <br />
-          <Select
-            options={options}
-            placeholder="プレイリストを選ぶ"
-            onChange={(value) => {
-              value ? setSelectedPlaylist(value) : null;
-            }}
-            noOptionsMessage={() => "プレイリストを追加してください"}
-          />
-          <br />
-
-          <FileInputWrapper>
-            <StyledFileInput
-              type="file"
-              id="imageInput"
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setImage(e.target.files![0])}
+            <TextField
+              placeholder="ジャンル"
+              type="text"
+              onChange={(e) => setGenre(e.target.value)}
             />
-            <label htmlFor="imageInput">
-              <Button variant="outlined" color="primary" component="span">
-                画像を選ぶ
-              </Button>
-              {image && <FileName>{image.name}</FileName>}
-            </label>
-          </FileInputWrapper>
-          <br />
-          <br />
-          <Button
-            disabled={!genre || !description || !selectedPlaylist || !image}
-            variant="contained"
-            color="primary"
-            onClick={newPost}
-          >
-            投稿する
-          </Button>
+            <br />
+            <TextField
+              placeholder="説明文"
+              type="text"
+              multiline
+              maxRows={10}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+            <br />
+            <Select
+              options={options}
+              placeholder="プレイリストを選ぶ"
+              onChange={(value) => {
+                value ? setSelectedPlaylist(value) : null;
+              }}
+              noOptionsMessage={() => "プレイリストを追加してください"}
+            />
+            <br />
+
+            <FileInputWrapper>
+              <StyledFileInput
+                type="file"
+                id="imageInput"
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setImage(e.target.files![0])}
+              />
+              <label htmlFor="imageInput">
+                <Button variant="outlined" color="primary" component="span">
+                  画像を選ぶ
+                </Button>
+                {image && <FileName>{image.name}</FileName>}
+              </label>
+            </FileInputWrapper>
+            <br />
+            <br />
+            <Button
+              disabled={!genre || !description || !selectedPlaylist || !image}
+              variant="contained"
+              color="primary"
+              onClick={newPost}
+            >
+              投稿する
+            </Button>
+          </>}
         </form>
       </Modal>
     </>

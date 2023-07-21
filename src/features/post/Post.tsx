@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useState } from "react";
 import styles from "./Post.module.css";
 import { makeStyles } from "@material-ui/core/styles";
-import { Avatar, Divider, Checkbox } from "@material-ui/core";
+import { Avatar, Divider, Checkbox, CircularProgress } from "@material-ui/core";
 import { Favorite, FavoriteBorder } from "@material-ui/icons";
 import AvatarGroup from "@material-ui/lab/AvatarGroup";
 import { useSelector, useDispatch } from "react-redux";
@@ -17,7 +17,7 @@ import {
 import { PROPS_POST } from "../types";
 import { selectAudioFeatures, selectPlaylists } from "../playlist/playlistSlice";
 import { NavLink } from "react-router-dom";
-import { fetchAsyncGetFollowerList, fetchAsyncGetFollowingList, fetchAsyncGetMyFollowingList, selectFollowerList, selectMyFollowingList } from "../connection/connectionSlice";
+import { fetchAsyncGetFollowerList, fetchAsyncGetFollowingList, fetchAsyncGetMyFollowingList, selectFollowerList, selectIsLoadingConnection, selectMyFollowingList } from "../connection/connectionSlice";
 import UnFollowButton from "../../components/molecules/UnFollowButton";
 import FollowButton from "../../components/molecules/FollowButton";
 
@@ -48,6 +48,7 @@ const Post: React.FC<PROPS_POST> = memo(({
   const audioFeatures = useSelector(selectAudioFeatures);
   const MyFollowingList = useSelector(selectMyFollowingList);
   const followerList = useSelector(selectFollowerList);
+  const isLoadingConnection = useSelector(selectIsLoadingConnection);
 
   const [text, setText] = useState("");
 
@@ -101,9 +102,12 @@ const Post: React.FC<PROPS_POST> = memo(({
         <div className={styles.post_header}>
           <NavLink to={`/user/${userPost}`} className={styles.post_header_link}>
           <Avatar className={styles.post_avatar} src={`https://res.cloudinary.com/hibhbyrja/${prof[0]?.img}`} />
+
           <h3 className={styles.post_nickName}>{prof[0]?.nickName}</h3>
           </NavLink>
           <div className={styles.connection_button_container}>
+          {isLoadingConnection ? <div className={styles.circular_progress}><CircularProgress size={20} /></div>:
+            <>
             {myProfile.id !== prof[0]?.id && (
               MyFollowingList.includes(prof[0].id) ? (
                 <UnFollowButton followerId={myProfile.id} followingId={prof[0]?.id} />
@@ -111,6 +115,8 @@ const Post: React.FC<PROPS_POST> = memo(({
                 <FollowButton followerId={myProfile.id} followingId={prof[0]?.id} />
               )
             )}
+            </> }
+
           </div>
         </div>
         <img className={styles.post_image} src={`https://res.cloudinary.com/hibhbyrja/${imageUrl}`} alt="" />

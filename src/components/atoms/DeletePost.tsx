@@ -20,11 +20,10 @@ const customStyles = {
 };
 
 type Props = {
-  postId: any
+  postId: number
 }
 
-const DeletePost: React.FC<Props> = (props) => {
-  const {postId} = props
+const DeletePost: React.FC<Props> = ({postId}) => {
   const dispatch: AppDispatch = useDispatch();
   const openDeletePost = useSelector(selectOpenDeletePost);
   const isLoadingDeletePost = useSelector(selectIsLoadingDeletePost);

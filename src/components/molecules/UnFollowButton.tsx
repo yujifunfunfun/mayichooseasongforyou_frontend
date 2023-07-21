@@ -1,7 +1,7 @@
 import { Button } from "@material-ui/core";
 import axios from "axios";
 import styles from "./FollowButton.module.css";
-import { fetchAsyncGetFollowerList, fetchAsyncGetFollowingList, fetchAsyncGetMyFollowerList, fetchAsyncGetMyFollowingList } from "../../features/connection/connectionSlice";
+import { fetchAsyncGetFollowerList, fetchAsyncGetFollowingList, fetchAsyncGetMyFollowerList, fetchAsyncGetMyFollowingList, fetchConnectionEnd, fetchConnectionStart } from "../../features/connection/connectionSlice";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../app/store";
 
@@ -16,7 +16,7 @@ const UnFollowButton: React.FC<UnFollowButtonProps> = ({ followerId, followingId
 
   const handleSubmit = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
-
+    await dispatch(fetchConnectionStart());
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_DEV_API_URL}api/unfollow/`,
@@ -37,7 +37,7 @@ const UnFollowButton: React.FC<UnFollowButtonProps> = ({ followerId, followingId
         await dispatch(fetchAsyncGetFollowerList(userProfileId));
         await dispatch(fetchAsyncGetFollowingList(userProfileId));
       }
-      // フォローが成功した場合に必要な処理を追加することができます
+      await dispatch(fetchConnectionEnd());
     } catch (error: any) {
       console.error("Error:", error.response);
       // エラーハンドリングを行います

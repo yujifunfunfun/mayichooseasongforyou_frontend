@@ -182,3 +182,14 @@
   display: flex;
   cursor: pointer;
 }
+
+.circular_progress{
+  width: 100%;
+  text-align: center;
+  margin-top: 100px;
+}
+
+.circular_progress_new_post{
+  width: 100%;
+  text-align: center;
+}
