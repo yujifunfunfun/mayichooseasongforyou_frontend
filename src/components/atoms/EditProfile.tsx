@@ -80,14 +80,14 @@ const EditProfile: React.FC = () => {
           {isLoadingAuth ? <div className={styles.circular_progress}><CircularProgress /></div>:
           <>
             <TextField
-              placeholder="nickname"
+              placeholder="ニックネーム"
               type="text"
               value={profile?.nickName}
               onChange={(e) => dispatch(editNickname(e.target.value))}
             />
             <br />
             <TextField
-              placeholder="fav_music_genre"
+              placeholder="好きな音楽のジャンル"
               type="text"
               multiline
               maxRows={5}

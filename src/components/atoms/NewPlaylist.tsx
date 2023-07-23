@@ -55,12 +55,12 @@ const NewPlaylist: React.FC = memo(() => {
 
           <br />
           <TextField
-            placeholder="title"
+            placeholder="タイトル"
             type="text"
             onChange={(e) => setTitle(e.target.value)}
           />
           <TextField
-            placeholder="url"
+            placeholder="URL"
             type="text"
             onChange={(e) => setUrl(e.target.value)}
           />
