@@ -230,7 +230,7 @@ const Post: React.FC<PROPS_POST> = memo(({
                 <input
                   className={styles.post_input}
                   type="text"
-                  placeholder="add a comment"
+                  placeholder="コメントを追加..."
                   value={text}
                   onChange={(e) => setText(e.target.value)}
                 />
