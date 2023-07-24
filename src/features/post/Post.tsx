@@ -15,7 +15,7 @@ import {
   fetchAsyncPatchLiked,
 } from "./postSlice";
 import { PROPS_POST } from "../types";
-import { selectAudioFeatures, selectPlaylists } from "../playlist/playlistSlice";
+import { fetchAsyncGetMyPlaylist, fetchAsyncGetPlaylist, selectAudioFeatures, selectPlaylists } from "../playlist/playlistSlice";
 import { NavLink } from "react-router-dom";
 import { fetchAsyncGetFollowerList, fetchAsyncGetFollowingList, fetchAsyncGetMyFollowingList, selectFollowerList, selectIsLoadingConnection, selectMyFollowingList } from "../connection/connectionSlice";
 import UnFollowButton from "../../components/molecules/UnFollowButton";
@@ -62,10 +62,9 @@ const Post: React.FC<PROPS_POST> = memo(({
   useEffect(() => {
     const fetchBootLoader = async () => {
       if (localStorage.localJWT) {
-        const result = await dispatch(fetchAsyncGetMyFollowingList(myProfile.id));
-        if (fetchAsyncGetFollowingList.rejected.match(result)) {
-          return null;
-        }
+        await dispatch(fetchAsyncGetMyFollowingList(myProfile.id));
+        await dispatch(fetchAsyncGetPlaylist());
+        await dispatch(fetchAsyncGetMyPlaylist());
       }
     };
     fetchBootLoader();
