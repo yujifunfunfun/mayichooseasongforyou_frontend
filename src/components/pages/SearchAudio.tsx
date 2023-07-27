@@ -19,8 +19,11 @@ const SearchAudio: React.FC = memo(() => {
 
   const handleSubmit = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
-    const tId = trackUrl.indexOf("track/") + 6;
-    const track_id = trackUrl.substring(tId)
+    setSimilarAudioList([[]])
+
+    const regex = /track\/([a-zA-Z0-9]+)/;
+    const match = trackUrl.match(regex);
+    const track_id = match ? match[1] : null;
     const pId = playlistUrl.indexOf("playlist/") + 9;
     const playlist_id = playlistUrl.substring(pId)
 
