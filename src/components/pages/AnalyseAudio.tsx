@@ -19,8 +19,9 @@ const AnalyseAudio: React.FC = memo(() => {
 
   const handleSubmit = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
-    const nextSharpNum = trackUrl.indexOf("track/") + 6;
-    const track_id = trackUrl.substring(nextSharpNum)
+    const regex = /track\/([a-zA-Z0-9]+)/;
+    const match = trackUrl.match(regex);
+    const track_id = match ? match[1] : null;
     await dispatch(fetchPlaylistStart());
       try {
         const response = await axios.get(`${process.env.REACT_APP_DEV_API_URL}api/track/${track_id}/`, {
